@@ -15,9 +15,19 @@ export class AuthService {
         if(!user){
             throw new UnauthorizedException()
         }
-        const payload = {sub: user.id, username: user.name}
+        const payload = {sub: user.id, username: user.name, guest:false}
         return {
             token: await this.jwtSvc.signAsync(payload)
+        }
+    }
+
+    async sigInGuest(){
+        return {
+            token: await this.jwtSvc.signAsync({
+                sub: '8TU(ojg+(Z;hhiAOJOLs]\}GAJ.BOajW',
+                username: 'Guest',
+                guest: true
+            })
         }
     }
 }

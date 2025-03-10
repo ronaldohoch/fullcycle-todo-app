@@ -14,4 +14,9 @@ export class AuthController {
         return await this.authSvc.sigIn(loginData.email, loginData.password);
     }
 
+    @Post('guest')
+    async signinGuest(){
+        return await this.authSvc.sigInGuest();
+    }
+
 }
