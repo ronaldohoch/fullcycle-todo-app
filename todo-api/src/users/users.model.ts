@@ -1,4 +1,5 @@
-import { Column, Model, Table, PrimaryKey, Default, DataType, IsEmail } from 'sequelize-typescript';
+import { Column, Model, Table, PrimaryKey, Default, DataType, IsEmail, AfterCreate, BeforeCreate } from 'sequelize-typescript';
+import * as bcrypt from 'bcrypt';
 
 
 @Table
@@ -15,6 +16,10 @@ export class UsersModel extends Model{
     @Column
     email: string
 
+    @BeforeCreate
+    @BeforeCreate static async Updatepassword(user){
+        user.dataValues.password = await bcrypt.hash(user.dataValues.password, 10);
+    }
     @Column
     password: string
 

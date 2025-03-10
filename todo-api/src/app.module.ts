@@ -4,6 +4,7 @@ import { UsersModel } from './users/users.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { ConfigModule } from '@nestjs/config';
       synchronize:true,
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    // TasksModule
   ],
   controllers: [],
   providers: [],
