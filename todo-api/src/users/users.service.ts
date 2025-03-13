@@ -12,17 +12,18 @@ export class UsersService {
         return this.usersModel.findAll();
     }
 
-    async findOneSigin(email:string, password:string): Promise<UsersModel|null>{
-        return await this.usersModel.findOne({
+    async findOneSigin(email:string): Promise<any>{
+        const user = await this.usersModel.findOne({
+            raw: true,
             where:{
-                email:email,
-                password:password
+                email:email
             }
-        })
+        });
+
+        return user;
     }
 
     async create(user): Promise<UsersModel>{
-        // console.log(user.name)
         return this.usersModel.create(user);
     }
 
