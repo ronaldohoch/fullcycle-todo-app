@@ -38,27 +38,28 @@ export class TasksService {
         })
     }
 
-    async deleteOne(id): Promise<object|undefined>{
-        const user = await this.tasksModel.findOne({
-            where:{
-                id:id
-            }
-        })
+    // async deleteOne(id): Promise<object|undefined>{
+    //     const user = await this.tasksModel.findOne({
+    //         where:{
+    //             id:id
+    //         }
+    //     })
 
-        if(!user){
-            throw Error('User not found.');
-        }
+    //     if(!user){
+    //         throw Error('User not found.');
+    //     }
 
-        const rowsDeleted = await this.tasksModel.destroy({
-            where: {
-                id:id
-            }
-        })
+    //     const rowsDeleted = await this.tasksModel.destroy({
+    //         where: {
+    //             id:id,
+    //             // userId:userId
+    //         }
+    //     })
 
-        if(rowsDeleted>0){
-            return {
-                message: `User ${user?.dataValues.name} has deleted.`
-            }
-        }
-    }
+    //     if(rowsDeleted>0){
+    //         return {
+    //             message: `User ${user?.dataValues.name} has deleted.`
+    //         }
+    //     }
+    // }
 }
