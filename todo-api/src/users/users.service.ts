@@ -18,16 +18,16 @@ export class UsersService {
             where:{
                 email:email
             }
-        });
+        }); // what's happen if the user is not found?
 
         return user;
     }
 
-    async create(user): Promise<UsersModel>{
+    async create(user): Promise<UsersModel>{ // aways type the params
         return this.usersModel.create(user);
     }
 
-    async deleteOne(id): Promise<object|undefined>{
+    async deleteOne(id): Promise<object|undefined>{ // same here, and id should be a number
         const user = await this.usersModel.findOne({
             where:{
                 id:id
@@ -48,7 +48,7 @@ export class UsersService {
             return {
                 message: `User ${user?.dataValues.name} has deleted.`
             }
-        }
+        } // what's happen if rowsDeleted is 0?
 
     }
 }

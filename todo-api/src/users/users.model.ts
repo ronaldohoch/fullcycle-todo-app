@@ -16,6 +16,7 @@ export class UsersModel extends Model{
     @Column
     email: string
 
+    // what's happen if we update the password?
     @BeforeCreate
     static async Updatepassword(user){
         user.dataValues.password = await bcrypt.hash(user.dataValues.password, 10);

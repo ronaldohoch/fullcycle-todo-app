@@ -22,6 +22,7 @@ export class UsersController {
 
     @Delete(":id")
     async remove(@Param('id') id: string){
+        //passing the id to the service, parse the id to number, because the id is a number not a string
         return await this.usersSvc.deleteOne(id);
     }
 

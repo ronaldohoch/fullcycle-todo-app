@@ -14,15 +14,15 @@ export class AuthService {
     async sigIn(email: string, password:string): Promise<any>{
         const user = await this.usersSvc.findOneSigin(email);
         if(!user){
-            throw new UnauthorizedException()
+            throw new UnauthorizedException() // you can validate this in the users service
         }
         const passwordMatch = await bcrypt.compare(password, user.password)
         if(passwordMatch){
             const payload = {sub: user.id, username: user.name, guest:false}
             const jwt = await this.jwtSvc.signAsync(payload);
             return {...user,token:jwt};
-        }
-        throw new UnauthorizedException()
+        } 
+        throw new UnauthorizedException() // you can validate this in the users service, the responsibility of the auth service is to validate the password
     }
 
     async sigInGuest(){
