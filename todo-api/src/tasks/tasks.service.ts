@@ -14,7 +14,7 @@ export class TasksService {
         return await this.tasksModel.findAll();
     }
     
-    async findByUser(userId,done?): Promise<Tasks[]>{
+    async findByUser(userId,done?): Promise<Tasks[]>{ // missing type
         let isDone 
         return await this.tasksModel.findAll({
             where:{
@@ -23,11 +23,11 @@ export class TasksService {
         });
     }
 
-    async create(task): Promise<Tasks>{
+    async create(task): Promise<Tasks>{ // here you do the validations: user exists ? task is valid ? because whats happen if the user is not found?
         return this.tasksModel.create(task)
     }
 
-    async setAsDone(taskId,userId,setAsDone){
+    async setAsDone(taskId,userId,setAsDone){ // missing type
         return this.tasksModel.update({
             done:setAsDone
         },{

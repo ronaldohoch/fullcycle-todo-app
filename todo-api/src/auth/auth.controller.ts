@@ -17,6 +17,6 @@ export class AuthController {
     @Post('guest')
     async signinGuest(){
         return await this.authSvc.sigInGuest();
-    }
+    } // i need to do a login to be a guest? and if the user didn't login, how we know the user is a guest?
 
 }

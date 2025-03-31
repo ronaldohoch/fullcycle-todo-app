@@ -19,21 +19,21 @@ export class TasksController {
     // }
 
     @Get()
-    @UseGuards(AuthGuard)
-    async findAll(@User() user): Promise<Tasks[]>{
+    @UseGuards(AuthGuard) // if all routes are protected, you wan use the guard in the controller to avoid use the guard in each route
+    async findAll(@User() user): Promise<Tasks[]>{ // missing user type
         return await this.tasksSvc.findByUser(user.sub)
     }
 
     @Post()
     @UseGuards(AuthGuard)
-    async create(@Body() task:taskDTO, @User() user){
-        return await this.tasksSvc.create({...task,userId:user.sub})
+    async create(@Body() task:taskDTO, @User() user){ // missing user type
+        return await this.tasksSvc.create({...task,userId:user.sub}) // you are creating a new task with the user. so you need to pass the user and the task (dto)
     }
 
     @Patch(":id")
     @UseGuards(AuthGuard)
-    async setAsDone(@Param('id') taskId){
-        let userId = 'pega do jwt'
+    async setAsDone(@Param('id') taskId){ // missing taskId type
+        let userId = 'pega do jwt' // nice, pegou o user id do jwt?
         return await this.tasksSvc.setAsDone(taskId, userId, true);
     }
 
