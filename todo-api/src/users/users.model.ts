@@ -17,8 +17,8 @@ export class UsersModel extends Model{
     email: string
 
     @BeforeCreate
-    @BeforeCreate static async Updatepassword(user){
-        user.password = await bcrypt.hash(user.password, 10);
+    static async Updatepassword(user){
+        user.dataValues.password = await bcrypt.hash(user.dataValues.password, 10);
     }
     @Column
     password: string

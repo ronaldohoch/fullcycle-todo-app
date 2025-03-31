@@ -16,15 +16,13 @@ export class AuthService {
         if(!user){
             throw new UnauthorizedException()
         }
-
-        if(user && await bcrypt.compare(password, user.password)){
-            console.log("truuue")
+        const passwordMatch = await bcrypt.compare(password, user.password)
+        if(passwordMatch){
             const payload = {sub: user.id, username: user.name, guest:false}
             const jwt = await this.jwtSvc.signAsync(payload);
             return {...user,token:jwt};
         }
         throw new UnauthorizedException()
-
     }
 
     async sigInGuest(){
